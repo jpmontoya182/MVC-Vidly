@@ -45,9 +45,10 @@ namespace Vidly.Controllers
             return Content(year + "/" + month);
         }
 
+        // example different types of pass data to the view
         public ActionResult RandomData()
         {
-            var movie = new Movie() { Name = "Shrek come back !!"};
+            var movie = new Movie() { Name = "Shrek come back !!" };
             // it's no recommended pass data to the view, with these two methosd
             // because is fragile when you make a change, use the same method that 
             // random.
@@ -55,6 +56,9 @@ namespace Vidly.Controllers
             ViewBag.RandomMovie = movie;
             return View();
         }
+
+        // example ViewModels
+
 
     }
 }
