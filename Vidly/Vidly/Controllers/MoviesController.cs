@@ -9,56 +9,23 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
-        // GET: Movies/Random
-        public ActionResult Random()
+        // GET: Movies
+        public ActionResult Index()
         {
-            var movie = new Movie() { Name = "Shrek 2" };
+            var movies = GetMovies();
 
-            return View(movie);
+            return View(movies);
         }
 
-        public ActionResult Edit(int id)
+        private IEnumerable<Movie> GetMovies()
         {
-            return Content($"id : {id}");
-        }
+            var movies = new List<Movie>{
+                new Movie { Id = 1, Name = "Rambo" },
+               new Movie { Id = 2, Name = "Robotcop" }
+             };
 
-        public ActionResult Index(int? pageIndex, string sortBy)
-        {
-            if (!pageIndex.HasValue)
-            {
-                pageIndex = 1;
-            }
-
-            if (String.IsNullOrWhiteSpace(sortBy))
-            {
-                sortBy = "Name";
-            }
-
-            return Content($"pageIndex={pageIndex}&sortBy={sortBy}");
+            return movies;
 
         }
-
-        // GET : movies/released/2020/4 -> in routes ew defined this behaviour
-        [Route("movies/released/{year}/{month:regex(\\d{2}):range(1,12)}")]
-        public ActionResult ByReleaseDate(int year, int month)
-        {
-            return Content(year + "/" + month);
-        }
-
-        // example different types of pass data to the view
-        public ActionResult RandomData()
-        {
-            var movie = new Movie() { Name = "Shrek come back !!" };
-            // it's no recommended pass data to the view, with these two methosd
-            // because is fragile when you make a change, use the same method that 
-            // random.
-            ViewData["Movie"] = movie;
-            ViewBag.RandomMovie = movie;
-            return View();
-        }
-
-        // example ViewModels
-
-
     }
 }
