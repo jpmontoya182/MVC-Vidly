@@ -4,7 +4,8 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@* this is a coment multiline *@
+@* the popular class or definition,
+    it's on site.css file*@
 @{ var className = Model.Customers.Count > 5 ? "popular" : null;}
 
 <h2 class="@className">@Model.Movie.Name</h2>
